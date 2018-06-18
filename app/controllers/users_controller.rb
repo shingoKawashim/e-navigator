@@ -39,10 +39,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "削除いたしました"
-    @user.all_destroy
-    redirect_to root_url
+    if @user.all_destroy
+      flash[:success] = "削除いたしました"
+      session[:user_id] = nil
+      redirect_to root_url
+    else
+      flash.now[:danger] = "削除に失敗しました"
+      render :edit
+    end
   end
 
   private

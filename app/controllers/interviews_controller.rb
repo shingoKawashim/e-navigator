@@ -37,9 +37,13 @@ class InterviewsController < ApplicationController
   end
 
   def destroy
-    flash[:success] = "削除いたしました"
-    @interview.all_destroy
-    redirect_to user_interviews_path(user_id: current_user.id)
+    if @interview.all_destroy
+      flash[:success] = "削除いたしました"
+      redirect_to user_interviews_path(user_id: current_user.id)
+    else
+      flash.now[:danger] = "削除に失敗しました"
+      render :index
+    end
   end
 
   private
