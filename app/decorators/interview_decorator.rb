@@ -10,17 +10,17 @@ class InterviewDecorator < Draper::Decorator
     def header_objects
       model = eval(self.model_name.name.camelize)
       [
-          model.human_attribute_name(:id),
-          model.human_attribute_name(:start_date),
-          model.human_attribute_name(:status),
+        model.human_attribute_name(:id),
+        model.human_attribute_name(:start_date),
+        model.human_attribute_name(:status),
       ]
     end
 
     def body_objects
       [
-          "id",
-          "show_date",
-          "status_i18n",
+        "id",
+        "show_date",
+        "status_i18n",
       ]
     end
   end
