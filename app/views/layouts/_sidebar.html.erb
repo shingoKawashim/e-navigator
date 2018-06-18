@@ -11,11 +11,11 @@
                       class: "nav-link #{ current_page?(controller: 'interviews', action: 'new', user_id: current_user.id) ? 'active' : ''}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t("views.interview.index"), user_interviews_path(user_id: current_user.id),
+          <%= link_to t("views.interview.my_index"), user_interviews_path(user_id: current_user.id),
                       class: "nav-link #{ current_page?(controller: 'interviews', action: 'index', user_id: current_user.id) ? 'active' : ''}" %>
         </li>
         <li class="nav-item">
-          <%= link_to t("views.user.index"), users_path,
+          <%= link_to t("views.user.other_index"), users_path,
                       class: "nav-link #{ current_page?(controller: 'users', action: 'index') ? 'active' : ''}" %>
         </li>
       <% else %>

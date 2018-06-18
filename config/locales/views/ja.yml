@@ -17,12 +17,12 @@ ja:
       search: "検索"
       title: "タイトル"
     user:
-      index: "他ユーザー一覧"
+      other_index: "利用者一覧"
       mypage: "マイページ"
     session:
       signup: "新規登録"
       login: "ログイン"
       logout: "ログアウト"
     interview:
-      index: "あなたの面談日一覧"
+      my_index: "あなたの面談日一覧"
       new: "面談日作成"
