@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
-  before_action :require_user_logged_in, only: [:index, :edit, :update, :destroy]
-  before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :require_user_logged_in
+  before_action :correct_user, only: [:create, :edit, :update, :destroy]
   before_action :set_interview, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:new, :edit]
 
