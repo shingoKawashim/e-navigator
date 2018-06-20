@@ -26,3 +26,15 @@ ja:
     interview:
       my_index: "あなたの面談日一覧"
       new: "面談日作成"
+    flash:
+      create_success: "登録いたしました"
+      create_danger: "登録に失敗しました"
+      update_success: "更新いたしました"
+      update_danger: "更新に失敗しました"
+      destroy_success: "削除いたしました"
+      destroy_danger: "削除に失敗しました"
+      login_success: "ログインしました"
+      login_danger: "ユーザー名またはパスワードが違います"
+      logout_success: "ログアウトしました"
+      non_logged_in_user: "ログインが必要です"
+      incorrect_user: "他のユーザー情報は変更できません"

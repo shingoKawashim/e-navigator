@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:create, :edit, :update, :destroy]
+  before_action :correct_user
   before_action :set_interview, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:new, :edit]
 
@@ -15,10 +15,9 @@ class InterviewsController < ApplicationController
   def create
     @interview = Interview.new(interview_params)
     if @interview.save
-      flash[:success] = "登録いたしました"
-      redirect_to user_interviews_path(user_id: current_user.id)
+      redirect_to user_interviews_path(user_id: current_user.id), flash: {success: t("views.flash.create_success")}
     else
-      flash.now[:danger] = "登録に失敗しました"
+      flash.now[:danger] = t("views.flash.create_danger")
       render :new
     end
   end
@@ -28,20 +27,18 @@ class InterviewsController < ApplicationController
 
   def update
     if @interview.update(interview_params)
-      flash[:success] = "更新いたしました"
-      redirect_to user_interviews_path(user_id: current_user.id)
+      redirect_to user_interviews_path(user_id: current_user.id), flash: {success: t("views.flash.update_success")}
     else
-      flash.now[:danger] = "更新に失敗しました"
+      flash.now[:danger] = t("views.flash.update_danger")
       render :edit
     end
   end
 
   def destroy
     if @interview.all_destroy
-      flash[:success] = "削除いたしました"
-      redirect_to user_interviews_path(user_id: current_user.id)
+      redirect_to user_interviews_path(user_id: current_user.id), flash: {success: t("views.flash.destroy_success")}
     else
-      flash.now[:danger] = "削除に失敗しました"
+      flash.now[:danger] = t("views.flash.destroy_danger")
       render :index
     end
   end
@@ -62,8 +59,7 @@ class InterviewsController < ApplicationController
     def correct_user
       @user = User.find(params[:user_id])
       unless @user == current_user
-        flash[:danger] = "他のユーザー情報は変更できません。"
-        redirect_to root_url
+        redirect_to root_url, flash: {danger: t("views.flash.incorrect_user")}
       end
     end
 end
