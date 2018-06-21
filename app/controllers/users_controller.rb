@@ -15,10 +15,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save(context: :check_email)
       log_in(@user)
-      flash[:success] = "登録いたしました"
-      redirect_to users_path
+      redirect_to users__path, flash: {success: t("views.flash.create_success")}
     else
-      flash.now[:danger] = "登録に失敗しました"
+      flash.now[:danger] = t("views.flash.create_danger")
       render :new
     end
   end
@@ -30,19 +29,21 @@ class UsersController < ApplicationController
     @user.attributes = user_params
 
     if @user.save(context: :check_email)
-      flash[:success] = "更新いたしました"
-      redirect_to users_path
+      redirect_to users_path, flash: {success: t("views.flash.update_success")}
     else
-      flash.now[:danger] = "更新に失敗しました"
+      flash.now[:danger] = t("views.flash.update_danger")
       render :edit
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:success] = "削除いたしました"
-    @user.all_destroy
-    redirect_to root_url
+    if @user.all_destroy
+      session[:user_id] = nil
+      redirect_to root_url, flash: {success: t("views.flash.destroy_success")}
+    else
+      flash.now[:danger] = t("views.flash.destroy_danger")
+      render :edit
+    end
   end
 
   private
@@ -57,8 +58,7 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       unless @user == current_user
-        flash[:danger] = "他のユーザー情報は変更できません。"
-        redirect_to root_url
+        redirect_to root_url, flash: {danger: t("views.flash.incorrect_user")}
       end
     end
 end
