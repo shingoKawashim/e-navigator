@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180614134744) do
+ActiveRecord::Schema.define(version: 20180624133021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20180614134744) do
     t.datetime "deleted_at", comment: "削除日時"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_type", default: 0, null: false, comment: "タイプ(0=>生徒,1=>面接官)"
   end
 
   add_foreign_key "interviews", "users"

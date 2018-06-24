@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save(context: :check_email)
       log_in(@user)
-      redirect_to users__path, flash: {success: t("views.flash.create_success")}
+      redirect_to users_path, flash: {success: t("views.flash.create_success")}
     else
       flash.now[:danger] = t("views.flash.create_danger")
       render :new
@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name, :sex, :birthday, :school, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :sex, :birthday, :school, :email, :password, :password_confirmation, :user_type)
     end
 
     def correct_user

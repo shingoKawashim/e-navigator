@@ -18,6 +18,7 @@ class UserDecorator < Draper::Decorator
       [
         model.human_attribute_name(:id),
         model.human_attribute_name(:name),
+        model.human_attribute_name(:user_type),
         model.human_attribute_name(:sex),
         model.human_attribute_name(:birthday),
         model.human_attribute_name(:school),
@@ -29,6 +30,7 @@ class UserDecorator < Draper::Decorator
       [
         "id",
         "name",
+        "user_type_i18n",
         "sex_i18n",
         "birthday_human",
         "school",
