@@ -2,4 +2,10 @@
   <% UserDecorator.header_objects.each do |header_object|%>
     <th scope="col"><%= header_object%></th>
   <%end%>
+
+  <th><%= User.human_attribute_name :user_type %></th>
+
+  <% if @current_user.mentor? %>
+    <th></th>
+  <% end %>
 </tr>

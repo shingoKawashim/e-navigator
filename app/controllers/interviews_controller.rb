@@ -2,7 +2,7 @@ class InterviewsController < ApplicationController
   before_action :require_user_logged_in
   before_action :correct_user
   before_action :set_interview, only: [:edit, :update, :destroy]
-  before_action :set_user, only: [:new, :edit]
+  before_action :set_user, only: [:index, :new, :edit]
 
   def index
     @interviews = Interview.where(user_id: params[:user_id]).alive_records.page(params[:page]).per(10)
@@ -58,7 +58,7 @@ class InterviewsController < ApplicationController
 
     def correct_user
       @user = User.find(params[:user_id])
-      unless @user == current_user
+      unless @user == current_user || @current_user.mentor?
         redirect_to root_url, flash: {danger: t("views.flash.incorrect_user")}
       end
     end

@@ -5,6 +5,17 @@
     <% decorate_object.class.body_objects.each do |body_object|%>
       <td><%= eval("decorate_object.#{body_object}")%></td>
     <%end%>
+
+    <td><%= object.user_type_badge %></td>
+
+    <% if @current_user.mentor? %>
+      <% if object.student? %>
+        <td><%= link_to t("views.mentor.user_interviews"), user_interviews_path(user_id: object.id), {class: "btn btn-outline-success btn-sm"} %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    <% end %>
+
   </tr>
   <% end %>
 <%end%>

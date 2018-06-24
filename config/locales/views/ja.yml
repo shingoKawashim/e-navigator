@@ -19,12 +19,15 @@ ja:
     user:
       other_index: "利用者一覧"
       mypage: "マイページ"
+    mentor:
+      user_interviews: "面談日一覧"
     session:
       signup: "新規登録"
       login: "ログイン"
       logout: "ログアウト"
     interview:
       my_index: "あなたの面談日一覧"
+      other_index: "面談日一覧"
       new: "面談日作成"
     flash:
       create_success: "登録いたしました"

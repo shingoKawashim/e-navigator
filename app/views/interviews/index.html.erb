@@ -1,5 +1,9 @@
 <div id="top">
-  <h2><%= t("views.interview.my_index") %></h2>
+  <% if @current_user.student?  %>
+    <h2><%= t("views.interview.my_index") %></h2>
+  <% else %>
+    <h2><%= @user.name %>さんの面談日一覧</h2>
+<% end %>
 
   <% if @interviews.any? %>
     <table class="table mt-3">
