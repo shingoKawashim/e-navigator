@@ -5,6 +5,12 @@ class InterviewDecorator < Draper::Decorator
     return start_date.strftime("%Y年%m月%d日 %H時%M分〜")
   end
 
+  def mentor_name
+    unless mentor_id.nil?
+      return User.find(mentor_id).name
+    end
+  end
+
 
   class << self
     def header_objects
@@ -12,6 +18,7 @@ class InterviewDecorator < Draper::Decorator
       [
         model.human_attribute_name(:start_date),
         model.human_attribute_name(:status),
+        model.human_attribute_name(:mentor_id),
       ]
     end
 
@@ -19,6 +26,7 @@ class InterviewDecorator < Draper::Decorator
       [
         "show_date",
         "status_i18n",
+        "mentor_name",
       ]
     end
   end

@@ -21,6 +21,7 @@ ja:
         <<: *default
         start_date: 日時
         status: ステータス
+        mentor_id: 承認・却下者
   activemodel:
     attributes:
       default: &default

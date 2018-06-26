@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user
+  before_action :correct_user, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_interview, only: [:edit, :update, :destroy]
   before_action :set_user, only: [:index, :new, :edit]
 
@@ -49,12 +49,13 @@ class InterviewsController < ApplicationController
     reject = 1
     studend_id = params[:user_id]
     focus_interview_id = params[:id]
+    mentor = User.find(@current_user.id)
 
     interview = Interview.find(focus_interview_id)
     other_alive_interviews = Interview.where("user_id = (?) AND deleted = (?) AND id != (?)", studend_id, alive, focus_interview_id)
 
-    if interview.update(status: approval)
-      other_alive_interviews.update_all(status: reject)
+    if interview.update(status: approval, mentor_id: mentor.id)
+      other_alive_interviews.update_all(status: reject, mentor_id: mentor.id)
       redirect_to user_interviews_path(user_id: studend_id), flash: {success: t("views.flash.approval")}
     else
       flash.now[:danger] = t("views.flash.update_danger")
@@ -66,9 +67,10 @@ class InterviewsController < ApplicationController
     reject = 1
     studend_id = params[:user_id]
     focus_interview_id = params[:id]
+    mentor = User.find(@current_user.id)
 
     interview = Interview.find(focus_interview_id)
-    if interview.update(status: reject)
+    if interview.update(status: reject, mentor_id: mentor.id)
       redirect_to user_interviews_path(user_id: studend_id), flash: {success: t("views.flash.reject")}
     else
       flash.now[:danger] = t("views.flash.update_danger")
@@ -78,7 +80,7 @@ class InterviewsController < ApplicationController
 
   private
     def set_user
-    @user = User.find(params[:user_id])
+      @user = User.find(params[:user_id])
     end
 
     def set_interview
@@ -91,7 +93,7 @@ class InterviewsController < ApplicationController
 
     def correct_user
       @user = User.find(params[:user_id])
-      unless @user == current_user || @current_user.mentor?
+      unless @user == current_user
         redirect_to root_url, flash: {danger: t("views.flash.incorrect_user")}
       end
     end
