@@ -43,6 +43,39 @@ class InterviewsController < ApplicationController
     end
   end
 
+  def approval
+    alive = 0
+    approval = 2
+    reject = 1
+    studend_id = params[:user_id]
+    focus_interview_id = params[:id]
+
+    interview = Interview.find(focus_interview_id)
+    other_alive_interviews = Interview.where("user_id = (?) AND deleted = (?) AND id != (?)", studend_id, alive, focus_interview_id)
+
+    if interview.update(status: approval)
+      other_alive_interviews.update_all(status: reject)
+      redirect_to user_interviews_path(user_id: studend_id), flash: {success: t("views.flash.approval")}
+    else
+      flash.now[:danger] = t("views.flash.update_danger")
+      render :index
+    end
+  end
+
+  def reject
+    reject = 1
+    studend_id = params[:user_id]
+    focus_interview_id = params[:id]
+
+    interview = Interview.find(focus_interview_id)
+    if interview.update(status: reject)
+      redirect_to user_interviews_path(user_id: studend_id), flash: {success: t("views.flash.reject")}
+    else
+      flash.now[:danger] = t("views.flash.update_danger")
+      render :index
+    end
+  end
+
   private
     def set_user
     @user = User.find(params[:user_id])

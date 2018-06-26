@@ -6,8 +6,11 @@
     <%end%>
 
     <% if @current_user.student?  %>
-      <td><%= link_to t("views.default.edit"), edit_user_interview_path(id: object.id) ,{class: "btn btn-outline-primary btn-sm"} %></td>
-      <td><%= link_to t("views.default.destroy"), user_interview_path(id: object.id), method: :delete, data: { confirm: t("messages.destroy_confirm") },class: "btn btn-outline-danger btn-sm" %></td>
+      <td><%= link_to t("views.default.edit"), edit_user_interview_path(id: object.id), {class: "btn btn-outline-primary btn-sm"} %></td>
+      <td><%= link_to t("views.default.destroy"), user_interview_path(id: object.id), method: :delete, data: { confirm: t("messages.destroy_confirm") }, class: "btn btn-outline-danger btn-sm" %></td>
+    <% else %>
+      <td><%= link_to t("views.mentor.approval"), approval_user_interview_path(id: object.id), data: { confirm: t("messages.approval_confirm") }, class: "btn btn-outline-info btn-sm" %></td>
+      <td><%= link_to t("views.mentor.reject"), reject_user_interview_path(id: object.id), data: { confirm: t("messages.reject_confirm") }, class: "btn btn-outline-warning btn-sm" %></td>
     <% end %>
   </tr>
 <%end%>
