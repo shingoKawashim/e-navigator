@@ -5,7 +5,7 @@ class InterviewsController < ApplicationController
   before_action :set_user, only: [:index, :new, :edit]
 
   def index
-    @interviews = Interview.where(user_id: params[:user_id]).alive_records.order(id: :asc).page(params[:page]).per(10)
+    @interviews = Interview.where(user_id: params[:user_id]).alive_future_records.page(params[:page]).per(10)
   end
 
   def new
