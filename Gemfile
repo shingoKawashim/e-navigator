@@ -62,3 +62,11 @@ gem 'enum_help'
 group :production do
   gem 'pg', '0.21.0'
 end
+
+#pryの導入
+group :development, :test do
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-byebug'
+  gem 'pry-stack_explorer'
+end
