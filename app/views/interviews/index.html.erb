@@ -1,5 +1,7 @@
 <div id="top">
-  <h2><%= @user.name %>さんの面談日一覧</h2>
+  <h2><%= @user.name %>さんの<%= t("views.interview.index") %></h2>
+
+  <%= render "approval_interview_info"%>
 
   <table class="table mt-3">
     <thead>

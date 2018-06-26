@@ -1,0 +1,11 @@
+<% @interviews.each do |interview| %>
+  <% if interview.status == "approval" %>
+    <div class="alert alert-primary" role="alert">
+      <p>承認された面談情報</p>
+      <ul>
+        <li>日時：<%= interview.show_date %></li>
+        <li>面談者：<%= interview.mentor_name %></li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
