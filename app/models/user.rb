@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :interviews
+  has_many :interviews, dependent: :destroy
   
   enum sex: { male: 0, female: 1 }
   enum user_type: { student: 0, mentor: 1 }
