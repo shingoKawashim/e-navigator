@@ -16,7 +16,6 @@ class UserDecorator < Draper::Decorator
     def header_objects
       model = eval(self.model_name.name.camelize)
       [
-        model.human_attribute_name(:id),
         model.human_attribute_name(:name),
         model.human_attribute_name(:sex),
         model.human_attribute_name(:birthday),
@@ -27,7 +26,6 @@ class UserDecorator < Draper::Decorator
 
     def body_objects
       [
-        "id",
         "name",
         "sex_i18n",
         "birthday_human",
