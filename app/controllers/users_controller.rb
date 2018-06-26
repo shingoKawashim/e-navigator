@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :update, :destroy]
 
   def index
-    @users = User.alive_records.page(params[:page]).per(10)
+    @users = User.alive_records.order(id: :asc).page(params[:page]).per(10)
   end
 
   def new
