@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save(context: :check_email)
       log_in(@user)
-      redirect_to users_path, flash: {success: t("views.flash.create_success")}
+      redirect_to users_path, flash: { success: t("views.flash.create_success") }
     else
       flash.now[:danger] = t("views.flash.create_danger")
       render :new
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user.attributes = user_params
 
     if @user.save(context: :check_email)
-      redirect_to users_path, flash: {success: t("views.flash.update_success")}
+      redirect_to users_path, flash: { success: t("views.flash.update_success") }
     else
       flash.now[:danger] = t("views.flash.update_danger")
       render :edit
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def destroy
     if @user.all_destroy
       session[:user_id] = nil
-      redirect_to root_url, flash: {success: t("views.flash.destroy_success")}
+      redirect_to root_url, flash: { success: t("views.flash.destroy_success") }
     else
       flash.now[:danger] = t("views.flash.destroy_danger")
       render :edit
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
     def correct_user
       @user = User.find(params[:id])
       unless @user == current_user
-        redirect_to root_url, flash: {danger: t("views.flash.incorrect_user")}
+        redirect_to root_url, flash: { danger: t("views.flash.incorrect_user") }
       end
     end
 end
