@@ -12,6 +12,14 @@ class UserDecorator < Draper::Decorator
     (Date.today.strftime(date_format).to_i - birthday.strftime(date_format).to_i) / 10000
   end
 
+  def user_type_badge
+    if student?
+      return "<span class='badge badge-success'>生徒</span>".html_safe
+    else
+      return "<span class='badge badge-danger'>面接官</span>".html_safe
+    end
+  end
+
   class << self
     def header_objects
       model = eval(self.model_name.name.camelize)

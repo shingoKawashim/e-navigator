@@ -23,14 +23,6 @@ class User < ApplicationRecord
     end
   end
 
-  def user_type_badge
-    if self.user_type == "student"
-      return "<span class='badge badge-success'>生徒</span>".html_safe
-    else
-      return "<span class='badge badge-danger'>面接官</span>".html_safe
-    end
-  end
-
   has_secure_password
 
   class << self

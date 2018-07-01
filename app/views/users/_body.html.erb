@@ -6,7 +6,7 @@
       <td><%= eval("decorate_object.#{body_object}")%></td>
     <%end%>
 
-    <td><%= object.user_type_badge %></td>
+    <td><%= object.decorate.user_type_badge %></td>
 
     <% if @current_user.mentor? %>
       <% if object.student? %>
