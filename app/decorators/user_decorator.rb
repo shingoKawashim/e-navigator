@@ -42,7 +42,9 @@ class UserDecorator < Draper::Decorator
       ]
     end
 
-    def bd_count() 50 ; end
+    def bd_count
+      50
+    end
 
   end
 end

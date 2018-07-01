@@ -26,8 +26,14 @@ class User < ApplicationRecord
   has_secure_password
 
   class << self
-    def sex_male()  { name: "男性", id: "male" } ;end
-    def sex_female()    { name: "女性",id: "female" } ;end
+    def sex_male
+      { name: "男性", id: "male" }
+    end
+
+    def sex_female
+      { name: "女性",id: "female" }
+    end
+
     def sex_choices
       [
           [sex_male[:name], sex_male[:id]],
@@ -35,8 +41,14 @@ class User < ApplicationRecord
       ]
     end
 
-    def student_user() {name: "生徒", id: "student" } ;end
-    def mentor_user()    { name: "面接官",id: "mentor" } ;end
+    def student_user
+      {name: "生徒", id: "student" }
+    end
+
+    def mentor_user
+      { name: "面接官",id: "mentor" }
+    end
+
     def user_type_choices
       [
         [student_user[:name], student_user[:id]],
