@@ -1,7 +1,7 @@
 <% @interviews.each do |object| %>
   <%
     decorate_object = object.decorate
-    object.status == "withhold" ? style ="" : style ="disabled"
+    object.withhold? ? style ="" : style ="disabled"
   %>
   <tr>
     <% decorate_object.class.body_objects.each do |body_object|%>
