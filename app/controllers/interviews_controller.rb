@@ -44,19 +44,13 @@ class InterviewsController < ApplicationController
   end
 
   def approval
-    alive = 0
-    approval = 2
-    reject = 1
-    studend_id = params[:user_id]
-    focus_interview_id = params[:id]
     mentor = User.find(@current_user.id)
+    interview = Interview.find(params[:id])
+    other_alive_interviews = Interview.alive_records.where("user_id = (?) AND id != (?)", params[:user_id], params[:id])
 
-    interview = Interview.find(focus_interview_id)
-    other_alive_interviews = Interview.where("user_id = (?) AND deleted = (?) AND id != (?)", studend_id, alive, focus_interview_id)
-
-    if interview.update(status: approval, mentor_id: mentor.id)
-      other_alive_interviews.update_all(status: reject, mentor_id: mentor.id)
-      redirect_to user_interviews_path(user_id: studend_id), flash: { success: t("views.flash.approval") }
+    if interview.update(status: :approval, mentor_id: mentor.id)
+      other_alive_interviews.update_all(status: :reject, mentor_id: mentor.id)
+      redirect_to user_interviews_path(user_id: params[:user_id]), flash: { success: t("views.flash.approval") }
     else
       flash.now[:danger] = t("views.flash.update_danger")
       render :index
@@ -64,14 +58,10 @@ class InterviewsController < ApplicationController
   end
 
   def reject
-    reject = 1
-    studend_id = params[:user_id]
-    focus_interview_id = params[:id]
     mentor = User.find(@current_user.id)
-
-    interview = Interview.find(focus_interview_id)
-    if interview.update(status: reject, mentor_id: mentor.id)
-      redirect_to user_interviews_path(user_id: studend_id), flash: { success: t("views.flash.reject") }
+    interview = Interview.find(params[:id])
+    if interview.update(status: :reject, mentor_id: mentor.id)
+      redirect_to user_interviews_path(user_id: params[:user_id]), flash: { success: t("views.flash.reject") }
     else
       flash.now[:danger] = t("views.flash.update_danger")
       render :index
