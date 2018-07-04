@@ -16,6 +16,11 @@
       </div>
 
       <div class="form-group pb-2">
+        <%= f.label :user_type, class:'font-weight-bold' %>
+        <%= f.select(:user_type, @user.class.user_type_choices) %>
+      </div>
+
+      <div class="form-group pb-2">
         <%= f.label :sex, class:'font-weight-bold' %>
         <%= f.select(:sex, @user.class.sex_choices) %>
       </div>

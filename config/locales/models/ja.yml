@@ -16,10 +16,12 @@ ja:
         sex: 性別
         birthday: 誕生日
         school: 学校
+        user_type: 身分
       interview:
         <<: *default
         start_date: 日時
         status: ステータス
+        mentor_id: 承認・却下者
   activemodel:
     attributes:
       default: &default
@@ -29,6 +31,9 @@ ja:
       sex:
         male: 男性
         female: 女性
+      user_type:
+        student: 生徒
+        mentor: 面接官
     interview:
       status:
         withhold: 保留

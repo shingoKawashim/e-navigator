@@ -19,12 +19,15 @@ ja:
     user:
       other_index: "利用者一覧"
       mypage: "マイページ"
+    mentor:
+      approval: "承認"
+      reject: "却下"
     session:
       signup: "新規登録"
       login: "ログイン"
       logout: "ログアウト"
     interview:
-      my_index: "あなたの面談日一覧"
+      index: "面談日一覧"
       new: "面談日作成"
     flash:
       create_success: "登録いたしました"
@@ -38,3 +41,5 @@ ja:
       logout_success: "ログアウトしました"
       non_logged_in_user: "ログインが必要です"
       incorrect_user: "他のユーザー情報は変更できません"
+      approval: "承認いたしました"
+      reject: "却下いたしました"

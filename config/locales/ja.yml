@@ -208,3 +208,5 @@ ja:
     signed_in_failed: 'メールアドレスまたはパスワードが間違っています。'
     signed_out: 'ログアウトしました。'
     signed_in: 'ログインしました。'
+    approval_confirm: "本当に承認しますか?"
+    reject_confirm: "本当に却下しますか?"

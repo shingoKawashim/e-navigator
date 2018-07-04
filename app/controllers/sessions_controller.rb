@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     email = params[:session][:email].downcase
     password = params[:session][:password]
     if login(email, password)
-      redirect_to root_url, flash: {success: t("views.flash.login_success")}
+      redirect_to root_url, flash: { success: t("views.flash.login_success") }
     else
       flash.now[:danger] = t("views.flash.login_danger")
       render 'new'
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_url, flash: {success: t("views.flash.logout_success")}
+    redirect_to root_url, flash: { success: t("views.flash.logout_success") }
   end
 
   private
