@@ -2,21 +2,21 @@ class UserDecorator < Draper::Decorator
   delegate_all
 
   def birthday_human
-    return "不明" unless birthday
-    return "#{birthday} (#{age}歳)"
+    "不明" unless birthday
+    "#{birthday} (#{age}歳)"
   end
 
   def age
-    return "-" unless birthday
+    "-" unless birthday
     date_format = "%Y%m%d"
     (Date.today.strftime(date_format).to_i - birthday.strftime(date_format).to_i) / 10000
   end
 
   def user_type_badge
     if student?
-      return "<span class='badge badge-success'>生徒</span>".html_safe
+      "<span class='badge badge-success'>生徒</span>".html_safe
     else
-      return "<span class='badge badge-danger'>面接官</span>".html_safe
+      "<span class='badge badge-danger'>面接官</span>".html_safe
     end
   end
 

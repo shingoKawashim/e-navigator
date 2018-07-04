@@ -46,7 +46,7 @@ class InterviewsController < ApplicationController
   def approval
     mentor = User.find(@current_user.id)
     interview = Interview.find(params[:id])
-    other_alive_interviews = Interview.alive_records.where("user_id = (?) AND id != (?)", params[:user_id], params[:id])
+    other_alive_interviews = Interview.alive_records.where(user_id: params[:user_id]).where.not(id: params[:id])
 
     if interview.update(status: :approval, mentor_id: mentor.id)
       other_alive_interviews.update_all(status: :reject, mentor_id: mentor.id)
