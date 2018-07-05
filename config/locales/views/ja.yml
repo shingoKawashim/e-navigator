@@ -16,9 +16,11 @@ ja:
       destroy: "削除"
       search: "検索"
       title: "タイトル"
+      request: "申請する"
     user:
       other_index: "利用者一覧"
       mypage: "マイページ"
+      mentor: "面談申請先メンター"
     mentor:
       approval: "承認"
       reject: "却下"
@@ -43,3 +45,4 @@ ja:
       incorrect_user: "他のユーザー情報は変更できません"
       approval: "承認いたしました"
       reject: "却下いたしました"
+      mail_success: "申請メールを送信いたしました"

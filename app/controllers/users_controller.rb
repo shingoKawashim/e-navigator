@@ -46,6 +46,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def mailto
+    p "=================="
+    p params
+    redirect_to user_interviews_path(user_id: current_user.id), flash: { success: t("views.flash.mail_success") }
+  end
+
   private
     def set_user
       @user = User.find(params[:id])

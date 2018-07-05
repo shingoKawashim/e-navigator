@@ -210,3 +210,4 @@ ja:
     signed_in: 'ログインしました。'
     approval_confirm: "本当に承認しますか?"
     reject_confirm: "本当に却下しますか?"
+    mail_send_confirm: "本当に申請しますか? メンターにメールを送信いたします。"
