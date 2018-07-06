@@ -86,6 +86,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   ActionMailer::Base.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: ENV['APP_NAME'] }
   ActionMailer::Base.smtp_settings = {
     address: 'smtp.gmail.com',
     domain: 'gmail.com',
