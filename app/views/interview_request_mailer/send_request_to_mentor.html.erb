@@ -1,0 +1,4 @@
+<%= @mentor.name %> 様
+
+<%= @student.name %>さんから面談日の申請が行われました。
+<%= link_to 'こちら', user_interviews_url(user_id: @student.id) %>からご確認ください。

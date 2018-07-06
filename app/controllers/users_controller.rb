@@ -47,8 +47,10 @@ class UsersController < ApplicationController
   end
 
   def mailto
-    p "=================="
-    p params
+    mentor = User.find(params[:mentor_user][:id])
+    info = [mentor, current_user]
+    InterviewRequestMailer.send_request_to_mentor(info).deliver
+    InterviewRequestMailer.send_remind_to_student(info).deliver
     redirect_to user_interviews_path(user_id: current_user.id), flash: { success: t("views.flash.mail_success") }
   end
 
