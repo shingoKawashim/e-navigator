@@ -1,0 +1,9 @@
+<%= @student.name %> 様
+
+面談日が承認されました。
+
+日時：<%= @interview.decorate.show_date %>
+面談者：<%= @interview.decorate.mentor_name %>
+
+以下のリンクからご確認ください。
+<%= user_interviews_url(user_id: @student.id) %>
