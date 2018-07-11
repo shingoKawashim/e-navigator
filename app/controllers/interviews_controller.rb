@@ -52,8 +52,8 @@ class InterviewsController < ApplicationController
       other_alive_interviews.update_all(status: :reject, mentor_id: mentor.id)
 
       student = User.find(params[:user_id])
-      InterviewApprovalMailer.send_approval_to_student(mentor, student, interview).deliver
-      InterviewApprovalMailer.send_remind_to_mentor(mentor, student, interview).deliver
+      InterviewMailer.approval_to_student(mentor, student, interview).deliver
+      InterviewMailer.approval_to_mentor(mentor, student, interview).deliver
 
       redirect_to user_interviews_path(user_id: params[:user_id]), flash: { success: t("views.flash.approval") }
     else
