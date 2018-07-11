@@ -4,6 +4,8 @@ class User < ApplicationRecord
   enum sex: { male: 0, female: 1 }
   enum user_type: { student: 0, mentor: 1 }
 
+  scope :use_mentors, -> { where(user_type: :mentor) }
+
   before_save { self.email.downcase! }
 
   validates :name, presence: true, length: { maximum: 50 }

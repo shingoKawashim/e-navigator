@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
 
   resources :users, only: [:index, :create, :edit, :update, :destroy] do
+    post :apply
     resources :interviews, only: [:index, :new, :create, :edit, :update, :destroy] do
       member do
         match :approval, via: [:get, :post, :patch]
