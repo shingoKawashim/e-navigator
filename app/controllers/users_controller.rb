@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def mailto
+  def apply
     mentor = User.find(params[:mentor_user][:id])
     info = [mentor, current_user]
     InterviewRequestMailer.send_request_to_mentor(info).deliver
